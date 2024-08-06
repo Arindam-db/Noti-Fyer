@@ -18,15 +18,22 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.checkbox.MaterialCheckBox;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText messageEditText;
     private TimePicker timePicker;
+
+    private NotificationLogAdapter notificationLogAdapter;
+    private final List<NotificationItem> notificationItems= new ArrayList<>();
 
     private static final int REQUEST_NOTIFICATION_PERMISSION = 1;
     private static final int REQUEST_SCHEDULE_EXACT_ALARM_PERMISSION = 2;
@@ -47,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.repeatDailyCheckBox);
 
         Button setNotificationButton = findViewById(R.id.setNotificationButton);
+
+        RecyclerView notificationLogRecyclerView = findViewById(R.id.notificationLogRecyclerView); // Add this ID to your XML
+        notificationLogAdapter = new NotificationLogAdapter(notificationItems);
+        notificationLogRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        notificationLogRecyclerView.setAdapter(notificationLogAdapter);
+
+
 
         // Check and request notification permission
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -124,6 +138,13 @@ public class MainActivity extends AppCompatActivity {
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
                     Toast.makeText(this, "Reminder set successfully!", Toast.LENGTH_SHORT).show();
                 }
+
+                message = messageEditText.getText().toString();
+                String time = timePicker.getHour() + ":" + timePicker.getMinute();
+                notificationItems.add(new NotificationItem(message, time));
+                notificationLogAdapter.notifyItemInserted(notificationItems.size() - 1);
+
+
             }
         }
     }
