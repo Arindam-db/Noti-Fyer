@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private MaterialCheckBox repeatDailyCheckBox;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         timePicker = findViewById(R.id.timePicker);
         repeatDailyCheckBox = findViewById(R.id.repeatDailyCheckBox);
 
-        MaterialCheckBox repeatDailyCheckBox = findViewById(R.id.repeatDailyCheckBox);
+        findViewById(R.id.repeatDailyCheckBox);
 
         Button setNotificationButton = findViewById(R.id.setNotificationButton);
 
@@ -63,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     setNotification();
                 }
-            } else {
-                setNotification();
             }
         });
     }

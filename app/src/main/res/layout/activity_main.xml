@@ -6,7 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="#FEE8EB"
     android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your message"
+        android:textColor="@color/black"
+        android:paddingEnd="200dp"
+        android:textSize="20sp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -18,7 +27,9 @@
             android:id="@+id/messageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter message" />
+            android:background="@drawable/stroke_2"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -27,6 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:timePickerMode="spinner"
+        android:background="@drawable/stroke"
+        android:theme="@style/CustomTimePicker"
+        android:numbersTextColor="#565656"
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.checkbox.MaterialCheckBox
@@ -34,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Repeat Daily"
+        android:textColor="@color/black"
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -42,4 +57,5 @@
         android:layout_height="wrap_content"
         android:text="Set Reminder"
         app:cornerRadius="24dp" />
+
 </LinearLayout>
